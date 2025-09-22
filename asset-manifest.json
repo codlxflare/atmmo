@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/atmmo/static/css/main.c9e13328.css",
-    "main.js": "/atmmo/static/js/main.c84dd7eb.js",
+    "main.js": "/atmmo/static/js/main.321e8b16.js",
     "index.html": "/atmmo/index.html",
     "main.c9e13328.css.map": "/atmmo/static/css/main.c9e13328.css.map",
-    "main.c84dd7eb.js.map": "/atmmo/static/js/main.c84dd7eb.js.map"
+    "main.321e8b16.js.map": "/atmmo/static/js/main.321e8b16.js.map"
   },
   "entrypoints": [
     "static/css/main.c9e13328.css",
-    "static/js/main.c84dd7eb.js"
+    "static/js/main.321e8b16.js"
   ]
 }
