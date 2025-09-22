@@ -109,27 +109,35 @@ export const useCachedApi = (apiFunction, cacheKey, dependencies = []) => {
 
   // Загружаем данные из кэша при инициализации
   useEffect(() => {
-    if (cacheKey) {
-      const cached = localStorage.getItem(cacheKey);
-      if (cached) {
-        try {
-          const { data: cachedData, timestamp } = JSON.parse(cached);
-          if (Date.now() - timestamp < CACHE_DURATION) {
-            setData(cachedData);
-            setLastFetch(timestamp);
-            console.log(`Данные загружены из кэша для ${cacheKey}:`, cachedData);
-            return;
+    const loadData = async () => {
+      if (cacheKey) {
+        const cached = localStorage.getItem(cacheKey);
+        if (cached) {
+          try {
+            const { data: cachedData, timestamp } = JSON.parse(cached);
+            if (Date.now() - timestamp < CACHE_DURATION) {
+              setData(cachedData);
+              setLastFetch(timestamp);
+              console.log(`Данные загружены из кэша для ${cacheKey}:`, cachedData);
+              return;
+            }
+          } catch (e) {
+            console.warn('Ошибка парсинга кэша:', e);
           }
-        } catch (e) {
-          console.warn('Ошибка парсинга кэша:', e);
         }
       }
-    }
-    
-    // Загружаем данные сразу при инициализации
-    console.log(`Загружаем данные для ${cacheKey}...`);
-    fetchData();
-  }, [fetchData, cacheKey]);
+      
+      // Загружаем данные сразу при инициализации
+      console.log(`Загружаем данные для ${cacheKey}...`);
+      try {
+        await fetchData();
+      } catch (error) {
+        console.error(`Ошибка загрузки данных для ${cacheKey}:`, error);
+      }
+    };
+
+    loadData();
+  }, [cacheKey]);
 
   return { data, loading, error, refetch: fetchData };
 };
