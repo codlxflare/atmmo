@@ -41,7 +41,21 @@ export const HomePage = () => {
     console.log('HomePage - complexes:', complexes);
     console.log('HomePage - complexesLoading:', complexesLoading);
     console.log('HomePage - complexesError:', complexesError);
-  }, [complexes, complexesLoading, complexesError]);
+    console.log('HomePage - promotions:', promotions);
+    console.log('HomePage - promotionsLoading:', promotionsLoading);
+  }, [complexes, complexesLoading, complexesError, promotions, promotionsLoading]);
+
+  // Принудительно загружаем данные, если они не загружены
+  useEffect(() => {
+    if (!complexes && !complexesLoading && !complexesError) {
+      console.log('HomePage: Принудительно загружаем комплексы...');
+      api.complexes.getComplexes().catch(console.error);
+    }
+    if (!promotions && !promotionsLoading && !promotionsError) {
+      console.log('HomePage: Принудительно загружаем акции...');
+      api.promotions.getPromotions().catch(console.error);
+    }
+  }, [complexes, complexesLoading, complexesError, promotions, promotionsLoading, promotionsError]);
 
   const handlePromotionClick = (promotion) => {
     setSelectedPromotion(promotion);

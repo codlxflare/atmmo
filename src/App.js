@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
 import { Navigation } from "./components/Navigation";
 import { Footer } from "./components/Footer";
-import { DataPreloader } from "./components/DataPreloader";
 import { HomePage } from "./pages/HomePage";
 import { ObjectsPage } from "./pages/ObjectsPage";
 import { PromotionsPage } from "./pages/PromotionsPage";
@@ -11,8 +11,31 @@ import { AboutPage } from "./pages/AboutPage";
 import { ContactsPage } from "./pages/ContactsPage";
 import { ComplexDetailPage } from "./pages/ComplexDetailPage";
 import { ApartmentDetailPage } from "./pages/ApartmentDetailPage";
+import { api } from "./services/api";
 
 function App() {
+  // Предзагружаем данные при инициализации приложения
+  useEffect(() => {
+    const preloadData = async () => {
+      try {
+        console.log('App: Начинаем предзагрузку данных...');
+        
+        // Загружаем все данные параллельно
+        await Promise.all([
+          api.complexes.getComplexes(),
+          api.apartments.getApartments(),
+          api.promotions.getPromotions()
+        ]);
+        
+        console.log('App: Данные предзагружены успешно');
+      } catch (error) {
+        console.warn('App: Ошибка при предзагрузке данных:', error);
+      }
+    };
+
+    preloadData();
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
