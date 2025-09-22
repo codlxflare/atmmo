@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/atmmo/static/css/main.269675d0.css",
+    "main.js": "/atmmo/static/js/main.27cef654.js",
+    "index.html": "/atmmo/index.html",
+    "main.269675d0.css.map": "/atmmo/static/css/main.269675d0.css.map",
+    "main.27cef654.js.map": "/atmmo/static/js/main.27cef654.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.269675d0.css",
+    "static/js/main.27cef654.js"
+  ]
+}
