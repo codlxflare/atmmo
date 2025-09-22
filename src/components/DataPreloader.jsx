@@ -11,14 +11,20 @@ export const DataPreloader = () => {
       try {
         console.log('Начинаем предзагрузку данных...');
         
-        // Загружаем все данные параллельно
-        await Promise.all([
+        // Загружаем все данные параллельно и сохраняем в localStorage
+        const [complexes, apartments, promotions] = await Promise.all([
           api.complexes.getComplexes(),
           api.apartments.getApartments(),
           api.promotions.getPromotions()
         ]);
         
-        console.log('Данные предзагружены успешно');
+        // Сохраняем данные в localStorage с актуальным timestamp
+        const timestamp = Date.now();
+        localStorage.setItem('complexes', JSON.stringify({ data: complexes, timestamp }));
+        localStorage.setItem('apartments', JSON.stringify({ data: apartments, timestamp }));
+        localStorage.setItem('promotions', JSON.stringify({ data: promotions, timestamp }));
+        
+        console.log('Данные предзагружены и сохранены в localStorage');
         setIsPreloading(false);
       } catch (error) {
         console.warn('Ошибка при предзагрузке данных:', error);

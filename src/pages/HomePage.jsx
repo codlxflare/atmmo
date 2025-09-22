@@ -36,6 +36,13 @@ export const HomePage = () => {
     'promotions'
   );
 
+  // Отладочная информация
+  useEffect(() => {
+    console.log('HomePage - complexes:', complexes);
+    console.log('HomePage - complexesLoading:', complexesLoading);
+    console.log('HomePage - complexesError:', complexesError);
+  }, [complexes, complexesLoading, complexesError]);
+
   const handlePromotionClick = (promotion) => {
     setSelectedPromotion(promotion);
   };
@@ -109,9 +116,10 @@ export const HomePage = () => {
             </p>
           </div>
 
-          {complexesLoading ? (
+          {complexesLoading || !complexes ? (
             <div className="flex justify-center items-center py-16">
               <Loader2 size={40} className="animate-spin text-[#f69700]" />
+              <span className="ml-2 text-gray-600">Загрузка комплексов...</span>
             </div>
           ) : complexesError ? (
             <div className="text-center py-16">
@@ -200,9 +208,10 @@ export const HomePage = () => {
           </div>
 
           <div className="max-w-md mx-auto md:max-w-5xl">
-            {promotionsLoading ? (
+            {promotionsLoading || !promotions ? (
               <div className="flex justify-center items-center py-12">
                 <Loader2 size={32} className="animate-spin text-[#f69700]" />
+                <span className="ml-2 text-gray-600">Загрузка акций...</span>
               </div>
             ) : promotionsError ? (
               <div className="text-center py-12">

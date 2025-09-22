@@ -117,17 +117,19 @@ export const useCachedApi = (apiFunction, cacheKey, dependencies = []) => {
           if (Date.now() - timestamp < CACHE_DURATION) {
             setData(cachedData);
             setLastFetch(timestamp);
+            console.log(`Данные загружены из кэша для ${cacheKey}:`, cachedData);
             return;
           }
         } catch (e) {
-          // Игнорируем ошибки парсинга кэша
+          console.warn('Ошибка парсинга кэша:', e);
         }
       }
     }
     
     // Загружаем данные сразу при инициализации
+    console.log(`Загружаем данные для ${cacheKey}...`);
     fetchData();
-  }, [fetchData]);
+  }, [fetchData, cacheKey]);
 
   return { data, loading, error, refetch: fetchData };
 };
