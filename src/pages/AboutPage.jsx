@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "../components/ui/card";
 import { Badge } from "../components/ui/badge";
 import { 
@@ -13,6 +14,7 @@ import {
 import { companyInfo, advantages } from "../data/mock";
 
 export const AboutPage = () => {
+  const navigate = useNavigate();
   const iconMap = {
     shield: Shield,
     award: Award,
@@ -248,7 +250,7 @@ export const AboutPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
               className="bg-[#f69700] hover:bg-[#e8860a] text-white px-8 py-3 rounded-lg font-semibold btn-hover"
-              onClick={() => window.location.href = '/objects'}
+              onClick={() => navigate('/objects')}
             >
               Выбрать квартиру
             </button>

@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
@@ -10,6 +11,7 @@ import { api } from "../services/api";
 import { useCachedApi } from "../hooks/useApi";
 
 export const ObjectsPage = () => {
+  const navigate = useNavigate();
   const [filters, setFilters] = useState({
     complexes: [],
     type: "all",
@@ -330,7 +332,7 @@ export const ObjectsPage = () => {
                         <Button 
                           variant="outline"
                           className="flex-1 border-[#f69700] text-[#f69700] hover:bg-[#f69700] hover:text-white"
-                          onClick={() => window.location.href = `/apartment/${apartment.id}`}
+                          onClick={() => navigate(`/apartment/${apartment.id}`)}
                         >
                           Подробнее
                         </Button>

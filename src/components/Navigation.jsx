@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import { YandexMap } from "./YandexMap";
@@ -16,6 +16,7 @@ import {
 import { companyInfo } from "../data/mock";
 
 export const Navigation = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [showContactModal, setShowContactModal] = useState(false);
   const [showMapModal, setShowMapModal] = useState(false);
@@ -231,7 +232,7 @@ export const Navigation = () => {
               </span>
             </Link>
             <button 
-              onClick={() => window.location.href = '/map'}
+              onClick={() => navigate('/map')}
               className="flex flex-col items-center justify-center space-y-1 hover:bg-gray-50 transition-colors"
             >
               <Map size={20} className={location.pathname === "/map" ? "text-[#f69700]" : "text-[#4b4b4d]"} />

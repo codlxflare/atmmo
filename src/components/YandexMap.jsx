@@ -1,10 +1,17 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const YandexMap = ({ complexes, onClose }) => {
   const mapRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!window.ymaps || !mapRef.current) return;
+
+    // Создаем глобальную функцию для навигации
+    window.navigateToObjects = () => {
+      navigate('/objects');
+    };
 
     window.ymaps.ready(() => {
       const map = new window.ymaps.Map(mapRef.current, {
@@ -45,7 +52,7 @@ export const YandexMap = ({ complexes, onClose }) => {
               <p style="margin: 0 0 8px 0; color: #4b4b4d; font-size: 14px;">${complex.address}</p>
               <p style="margin: 0 0 16px 0; font-weight: bold; color: #f69700; font-size: 18px;">${complex.price}</p>
               <button 
-                onclick="window.location.href='/objects'" 
+                onclick="window.navigateToObjects && window.navigateToObjects()" 
                 style="
                   background: #f69700; 
                   color: white; 

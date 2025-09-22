@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
@@ -19,6 +19,7 @@ import { useCachedApi } from "../hooks/useApi";
 
 export const ComplexDetailPage = () => {
   const { complexId } = useParams();
+  const navigate = useNavigate();
   const [selectedApartment, setSelectedApartment] = useState(null);
   const [showApartmentModal, setShowApartmentModal] = useState(false);
 
@@ -162,7 +163,7 @@ export const ComplexDetailPage = () => {
                         {apartment.area} м² • {apartment.floor > 0 ? `${apartment.floor} этаж` : "Подземный этаж"}
                       </p>
                       <Button 
-                        onClick={() => window.location.href = `/apartment/${apartment.id}`}
+                        onClick={() => navigate(`/apartment/${apartment.id}`)}
                         className="w-full bg-[#f69700] hover:bg-[#e8860a] text-white font-medium py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                       >
                         Подробнее
