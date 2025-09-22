@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/atmmo/static/css/main.269675d0.css",
-    "main.js": "/atmmo/static/js/main.92be1a01.js",
+    "main.css": "/atmmo/static/css/main.c9e13328.css",
+    "main.js": "/atmmo/static/js/main.c84dd7eb.js",
     "index.html": "/atmmo/index.html",
-    "main.269675d0.css.map": "/atmmo/static/css/main.269675d0.css.map",
-    "main.92be1a01.js.map": "/atmmo/static/js/main.92be1a01.js.map"
+    "main.c9e13328.css.map": "/atmmo/static/css/main.c9e13328.css.map",
+    "main.c84dd7eb.js.map": "/atmmo/static/js/main.c84dd7eb.js.map"
   },
   "entrypoints": [
-    "static/css/main.269675d0.css",
-    "static/js/main.92be1a01.js"
+    "static/css/main.c9e13328.css",
+    "static/js/main.c84dd7eb.js"
   ]
 }
