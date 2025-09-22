@@ -125,8 +125,9 @@ export const useCachedApi = (apiFunction, cacheKey, dependencies = []) => {
       }
     }
     
+    // Загружаем данные сразу при инициализации
     fetchData();
-  }, []);
+  }, [fetchData]);
 
   return { data, loading, error, refetch: fetchData };
 };
